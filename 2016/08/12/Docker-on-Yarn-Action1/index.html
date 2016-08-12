@@ -98,7 +98,7 @@ Container 的无缝切换
 
 Container 的无缝切换
 由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Container">
-<meta property="og:updated_time" content="2016-08-12T15:22:00.000Z">
+<meta property="og:updated_time" content="2016-08-12T15:50:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker on Yarn 实战一">
 <meta name="twitter:description" content="Docker on Yarn 实战
@@ -270,7 +270,7 @@ Container 的无缝切换
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T23:22:00+08:00" content="2016-08-12">
+            <time itemprop="dateCreated" datetime="2016-08-12T23:50:41+08:00" content="2016-08-12">
               2016-08-12
             </time>
           </span>
@@ -330,9 +330,9 @@ Container 的无缝切换
 <p>3) 根据CgroupsLCEResourcesHandler的getOverallLimits方法把ContainerCPU转化对应的Cgroup中对应的cfs_period_us和cfs_quota_us ,而cpuShares的设定则是根据ContainerVcores *1024(CPU 默认的权重)。</p>
 </blockquote>
 <h3 id="DockerContainer-的内存隔离"><a href="#DockerContainer-的内存隔离" class="headerlink" title="DockerContainer 的内存隔离"></a>DockerContainer 的内存隔离</h3><blockquote>
-<p>DockerContainer 内存隔离方面有两中不同的方案。一种是继续使用之前ContainerMonitor 的内存隔离、另外一种是使用Cgroup的内存隔离机制。</p>
+<p>DockerContainer 内存隔离方面有两中不同的方案。<br>一种是继续使用之前ContainerMonitor 的内存隔离、另外一种是使用Cgroup的内存隔离机制。</p>
 <p>1) 社区里面讨论中有人认为Cgroup内存隔离是有问题的,Cgroup 强制内存限制策略不容许内存瞬间峰值。但也有人指出把memory.limit_in_bytes设置大一些和利用Cgroup中memory.soft_limit_in_bytes的内存回收策略是可以避免内存瞬间峰值的。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-1856" target="_blank" rel="external">Yarn-1856</a>,出于对当前众多任务的考虑我们选择了前者。</p>
-<p>2) ContainerMonitor 的内存隔离方案还出现DockerContainer获取不了Pid的Bug,详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-3080" target="_blank" rel="external">YARN-3080</a>,我们对这个Bug也进行了修复。</p>
+<p>2) ContainerMonitor 的内存隔离方案还出现DockerContainer获取不了Pid的Bug。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-3080" target="_blank" rel="external">YARN-3080</a>,我们对这个Bug也进行了修复。</p>
 </blockquote>
 <h3 id="DockerContainer-的安全"><a href="#DockerContainer-的安全" class="headerlink" title="DockerContainer 的安全"></a>DockerContainer 的安全</h3><blockquote>
 <p>DockerContainer的安全问题也是我们较为关注的一个问题。DockerContainer 的安全性主要表现为<br>1) 用root去运行你的ContainerLanuch脚本、<br>2) 在容器里面和容器外面对待用户的权限是否一致<br>我们修改了DockerContainer启动时的参数,让Yarn用户运行ContainerLanuch脚本,同时我们 把/etc/passwd、/etc/shadow、/etc/group挂载进Docker里面用来达到容器里和容器外的权限一致的标准关于是否挂载/etc/passwd、/etc/shadow、/etc/group这些文件社区也正在谈论当中。<br>如果有兴趣的话可以参阅<a href="https://issues.apache.org/jira/browse/YARN-5360" target="_blank" rel="external">YARN-5360</a></p>
