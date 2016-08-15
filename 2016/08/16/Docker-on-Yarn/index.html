@@ -105,7 +105,7 @@
 
 我们可以通过实现DockerContainer运行在Yarn框架上来实现每个">
 <meta property="og:image" content="https://github.com/piaoyu/piaoyu.github.io.git/images/docker-on-yarn/docker-on-yarn-flow.png">
-<meta property="og:updated_time" content="2016-08-15T17:13:18.000Z">
+<meta property="og:updated_time" content="2016-08-15T17:16:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker on Yarn 总体设计">
 <meta name="twitter:description" content="背景介绍
@@ -281,7 +281,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T01:13:18+08:00" content="2016-08-16">
+            <time itemprop="dateCreated" datetime="2016-08-16T01:16:18+08:00" content="2016-08-16">
               2016-08-16
             </time>
           </span>
@@ -342,9 +342,7 @@
 </ol>
 <p>通过诸多的对比,Docker on Yarn 正是解决我们当前问题的最优的方案。</p>
 </blockquote>
-<h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><blockquote>
-<p>为了解决背景介绍问题,为此我们进行了Docker on Yarn 的总体设计。<br>我们先来看一下Docker on Yarn 的整体流程图<br><img src="/images/docker-on-yarn/docker-on-yarn-flow.png" alt=""></p>
-</blockquote>
+<h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><p>为了解决背景介绍问题,为此我们进行了Docker on Yarn 的总体设计。<br>我们先来看一下Docker on Yarn 的整体流程图<br><img src="/images/docker-on-yarn/docker-on-yarn-flow.png" alt=""></p>
 <p>整体的流程大概如下:</p>
 <ol>
 <li>在GitLab上存储各个集市的Dockerfile, 通过Merge事件触发Jenkins对镜像的构建。</li>
