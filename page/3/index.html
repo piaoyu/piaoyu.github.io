@@ -86,7 +86,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="PiaoYu's Blog">
-<meta property="og:url" content="https://github.com/piaoyu/piaoyu.github.io.git/archives/2016/08/index.html">
+<meta property="og:url" content="https://github.com/piaoyu/piaoyu.github.io.git/page/3/index.html">
 <meta property="og:site_name" content="PiaoYu's Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PiaoYu's Blog">
@@ -110,9 +110,9 @@
 
 
 
-  <link rel="canonical" href="https://github.com/piaoyu/piaoyu.github.io.git/archives/2016/08/"/>
+  <link rel="canonical" href="https://github.com/piaoyu/piaoyu.github.io.git/page/3/"/>
 
-  <title> 归档 | PiaoYu's Blog </title>
+  <title> PiaoYu's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +133,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,70 +222,136 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  
+  
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 3 篇日志。 继续努力。
-    </span>
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
 
-      
-      
-      
-
-      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/11/Docker-on-Yarn/" itemprop="url">
+                  Docker on Yarn 总体设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T18:07:04+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Yarn/" itemprop="url" rel="index">
+                    <span itemprop="name">Yarn</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/08/12/Docker-on-Yarn-Action1/" itemprop="url">
-              
-                <span itemprop="name">Docker on Yarn 实战一</span>
-              
-            </a>
+          
+            <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><blockquote>
+<p>数据挖掘平台通常需要用到各种繁杂的科学计算包,但所依赖的环境却不太相同。我们需要在集群中提供不同基础环境来运行这些科学算法包。</p>
+</blockquote>
+<h2 id="方案调研"><a href="#方案调研" class="headerlink" title="方案调研"></a>方案调研</h2><blockquote>
+<p>1、我们可以在主机上安装不同版本的基础环境，然后用不同版本基础环境去处理各个科学计算包的依赖,但这样会导致主机上的环境混乱。例如多版本Python共存的问题就是典型的例子。</p>
+<p>2、我们可以通过实现DockerContainer运行在Yarn框架上来实现每个任务的不同环境的定制。 </p>
+</blockquote>
+<h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><blockquote>
+<p>根据我们的方案调研,我们需要考虑Docker on Yarn 的总体的设计和我们需要解决的问题。</p>
+</blockquote>
+
+          
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-12T23:52:20+08:00"
-              content="2016-08-12" >
-          08-12
-        </time>
-      </div>
+    <div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
-
     
-
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2016/08/page/2/">2</a><a class="page-number" href="/archives/2016/08/page/3/">3</a><a class="extend next" rel="next" href="/archives/2016/08/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
-
 
 
 
@@ -465,12 +533,6 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   
 
