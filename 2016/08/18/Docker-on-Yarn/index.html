@@ -99,7 +99,7 @@
 
 我们可以通过实现DockerContainer运行在Yarn框架上来实现每个任务">
 <meta property="og:image" content="https://github.com/piaoyu/piaoyu.github.io.git/images/docker-on-yarn/docker-on-yarn-flow.png">
-<meta property="og:updated_time" content="2016-08-18T06:14:46.000Z">
+<meta property="og:updated_time" content="2016-08-18T06:20:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker on Yarn 总体设计">
 <meta name="twitter:description" content="背景介绍 数据挖掘平台通常需要用到各种繁杂的科学计算包,但所依赖的环境却不太相同。我们需要在集群中提供不同基础环境来运行这些科学算法包。
@@ -272,7 +272,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T14:14:46+08:00" content="2016-08-18">
+            <time itemprop="dateCreated" datetime="2016-08-18T14:20:48+08:00" content="2016-08-18">
               2016-08-18
             </time>
           </span>
@@ -341,7 +341,7 @@
 <ol>
 <li>在GitLab上存储各个集市的Dockerfile, 通过Merge事件触发Jenkins对Docker镜像的构建。</li>
 <li>在Jenkins 来构建完Docker镜像之后,把镜像推到镜像仓库。</li>
-<li>通过Jenkins把镜像save出来, 然后用Salt集群管理工具实现P2P的模式来大规模分发Docker镜像供DockerContainer使用。</li>
+<li>通过Jenkins把镜像save出来, 然后用Salt集群管理工具实现P2P的模式来大规模分发Docker镜像到集群节点供DockerContainer使用。</li>
 <li>在客户端提交任务时指定运行DockerContainer和Docker的镜像,运行自己的Application。</li>
 <li>提交的任务通过在NodeManager上用指定的Docker镜像初始化DockerContainer运行任务。 </li>
 </ol>
