@@ -245,7 +245,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/16/Docker-on-Yarn/" itemprop="url">
+                <a class="post-title-link" href="/2016/08/18/Docker-on-Yarn/" itemprop="url">
                   Docker on Yarn 总体设计
                 </a>
               
@@ -259,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T01:31:02+08:00" content="2016-08-16">
-              2016-08-16
+            <time itemprop="dateCreated" datetime="2016-08-18T14:14:46+08:00" content="2016-08-18">
+              2016-08-18
             </time>
           </span>
 
@@ -286,6 +286,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/18/Docker-on-Yarn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/Docker-on-Yarn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -314,20 +321,21 @@
 </li>
 <li><p>我们可以通过实现DockerContainer运行在Yarn框架上来实现每个任务的不同环境的定制。</p>
 </li>
-<li><p>Yarn对环境依赖复杂和隔离性需求高的应用程序支持不足，而Docker的技术优势正是提供任何程序能够运行在资源隔离的容器环境。</p>
+<li><p>Yarn对环境依赖复杂和隔离性需求高的应用程序支持不足，Docker的技术优势是提供任何程序能够运行在资源隔离的容器环境。</p>
 </li>
 </ol>
 <p>通过诸多的对比,Docker on Yarn 正是解决我们当前问题的最优的方案。</p>
 <h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><p>为了解决背景介绍问题,为此我们进行了Docker on Yarn 的总体设计。<br>我们先来看一下Docker on Yarn 的整体流程图<br><img src="/images/docker-on-yarn/docker-on-yarn-flow.png" alt=""></p>
 <p>整体的流程大概如下:</p>
 <ol>
-<li>在GitLab上存储各个集市的Dockerfile, 通过Merge事件触发Jenkins对镜像的构建。</li>
+<li>在GitLab上存储各个集市的Dockerfile, 通过Merge事件触发Jenkins对Docker镜像的构建。</li>
 <li>在Jenkins 来构建完Docker镜像之后,把镜像推到镜像仓库。</li>
 <li>通过Jenkins把镜像save出来, 然后用Salt集群管理工具实现P2P的模式来大规模分发Docker镜像供DockerContainer使用。</li>
-<li>在客户端提交任务时指定运行DockerContainer和Docker的镜像,运行自己的Application.</li>
-<li>提交的任务通过指定的Docker镜像在NodeManager上初始化DockerContainer运行任务。 </li>
+<li>在客户端提交任务时指定运行DockerContainer和Docker的镜像,运行自己的Application。</li>
+<li>提交的任务通过在NodeManager上用指定的Docker镜像初始化DockerContainer运行任务。 </li>
 </ol>
-
+<p>从整体的流程图中,我们可以看出Docker on Yarn 最关键的一步是实现DockerContianer的运行,在下篇Docker on Yarn 的实践中<br>我们将讲述我们如何在基于Hadoop-2.7.1 源码实现Docker</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2>
           
         
       
@@ -552,13 +560,34 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"piaoyu2011"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
+
+
   
   
 
@@ -567,6 +596,9 @@
   
 
   
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
 
 </body>
 </html>
