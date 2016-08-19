@@ -87,25 +87,25 @@
 <meta name="description" content="Docker on Yarn 实战
 在Docker on Yarn 总体设计中已经提到我们采取了DockerContianer的方案,我们在具体的实践中基于Hadoop-2.7.1 源码做了一些完善和改造。
 
-Container 的无缝切换
-由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Container">
+客户端Container 的无缝切换
+由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Contai">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker on Yarn 实战一">
-<meta property="og:url" content="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/12/Docker-on-Yarn-Action1/index.html">
+<meta property="og:url" content="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/19/Docker-on-Yarn-Action1/index.html">
 <meta property="og:site_name" content="PiaoYu's Blog">
 <meta property="og:description" content="Docker on Yarn 实战
 在Docker on Yarn 总体设计中已经提到我们采取了DockerContianer的方案,我们在具体的实践中基于Hadoop-2.7.1 源码做了一些完善和改造。
 
-Container 的无缝切换
-由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Container">
-<meta property="og:updated_time" content="2016-08-12T15:52:20.000Z">
+客户端Container 的无缝切换
+由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Contai">
+<meta property="og:updated_time" content="2016-08-19T06:50:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker on Yarn 实战一">
 <meta name="twitter:description" content="Docker on Yarn 实战
 在Docker on Yarn 总体设计中已经提到我们采取了DockerContianer的方案,我们在具体的实践中基于Hadoop-2.7.1 源码做了一些完善和改造。
 
-Container 的无缝切换
-由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Container">
+客户端Container 的无缝切换
+由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Contai">
 
 
 
@@ -117,7 +117,7 @@ Container 的无缝切换
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: undefined,
       author: '博主'
     }
   };
@@ -126,7 +126,7 @@ Container 的无缝切换
 
 
 
-  <link rel="canonical" href="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/12/Docker-on-Yarn-Action1/"/>
+  <link rel="canonical" href="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/19/Docker-on-Yarn-Action1/"/>
 
   <title> Docker on Yarn 实战一 | PiaoYu's Blog </title>
 </head>
@@ -270,8 +270,8 @@ Container 的无缝切换
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T23:52:20+08:00" content="2016-08-12">
-              2016-08-12
+            <time itemprop="dateCreated" datetime="2016-08-19T14:50:34+08:00" content="2016-08-19">
+              2016-08-19
             </time>
           </span>
 
@@ -300,8 +300,8 @@ Container 的无缝切换
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/12/Docker-on-Yarn-Action1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/Docker-on-Yarn-Action1/" itemprop="commentsCount"></span>
+                <a href="/2016/08/19/Docker-on-Yarn-Action1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/19/Docker-on-Yarn-Action1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,7 +327,7 @@ Container 的无缝切换
         <h2 id="Docker-on-Yarn-实战"><a href="#Docker-on-Yarn-实战" class="headerlink" title="Docker on Yarn 实战"></a>Docker on Yarn 实战</h2><blockquote>
 <p>在Docker on Yarn 总体设计中已经提到我们采取了DockerContianer的方案,我们在具体的实践中基于Hadoop-2.7.1 源码做了一些完善和改造。</p>
 </blockquote>
-<h3 id="Container-的无缝切换"><a href="#Container-的无缝切换" class="headerlink" title="Container 的无缝切换"></a>Container 的无缝切换</h3><blockquote>
+<h3 id="客户端Container-的无缝切换"><a href="#客户端Container-的无缝切换" class="headerlink" title="客户端Container 的无缝切换"></a>客户端Container 的无缝切换</h3><blockquote>
 <p>由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,<br>所以需要实现客户端能通过参数控制我们任务运行的Container类型。<br>我们通过改造ContainersLaunch和增加三种Container实例的缓存实现了三种不同类型Container的无缝切换。 </p>
 </blockquote>
 <h3 id="DockerContainer-的CPU隔离"><a href="#DockerContainer-的CPU隔离" class="headerlink" title="DockerContainer 的CPU隔离"></a>DockerContainer 的CPU隔离</h3><blockquote>
@@ -342,7 +342,7 @@ Container 的无缝切换
 <p>2) ContainerMonitor 的内存隔离方案还出现DockerContainer获取不了Pid的Bug。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-3080" target="_blank" rel="external">YARN-3080</a>,我们对这个Bug也进行了修复。</p>
 </blockquote>
 <h3 id="DockerContainer-的安全"><a href="#DockerContainer-的安全" class="headerlink" title="DockerContainer 的安全"></a>DockerContainer 的安全</h3><blockquote>
-<p>DockerContainer的安全问题也是我们较为关注的一个问题。DockerContainer 的安全性主要表现为<br>1) 用root去运行你的ContainerLanuch脚本、<br>2) 在容器里面和容器外面对待用户的权限是否一致<br>我们修改了DockerContainer启动时的参数,让Yarn用户运行ContainerLanuch脚本,同时我们 把/etc/passwd、/etc/shadow、/etc/group挂载进Docker里面用来达到容器里和容器外的权限一致的标准关于是否挂载/etc/passwd、/etc/shadow、/etc/group这些文件社区也正在谈论当中。<br>如果有兴趣的话可以参阅<a href="https://issues.apache.org/jira/browse/YARN-5360" target="_blank" rel="external">YARN-5360</a></p>
+<p>DockerContainer的安全问题也是我们较为关注的一个问题。DockerContainer 的安全性主要表现为<br>1) 用root去运行你的ContainerLanuch脚本<br>2) 在容器里面和容器外面对待用户的权限是否一致<br>我们修改了DockerContainer启动时的参数,让Yarn用户运行ContainerLanuch脚本,同时我们 把/etc/passwd、/etc/shadow、/etc/group挂载进Docker里面用来达到容器里和容器外的权限一致的标准关于是否挂载/etc/passwd、/etc/shadow、/etc/group这些文件社区也正在谈论当中。<br>如果有兴趣的话可以参阅<a href="https://issues.apache.org/jira/browse/YARN-5360" target="_blank" rel="external">YARN-5360</a></p>
 </blockquote>
 <h3 id="Docker-方面的改造"><a href="#Docker-方面的改造" class="headerlink" title="Docker 方面的改造"></a>Docker 方面的改造</h3><blockquote>
 <p>对于Docker 方面我们也做了相应的改善,如之前在测试集群里面我们的日志把Docker默认的目录/var/lib/docker写满,我们通过这次把Docker的默认目录修改成数据盘而非系统挂载盘，还对Docker的日志进行了限制文件的大小和文件的滚动个数。</p>
@@ -382,17 +382,13 @@ Container 的无缝切换
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/11/SparkR-Action/" rel="next" title="SparkR 初探">
-                <i class="fa fa-chevron-left"></i> SparkR 初探
+              <a href="/2016/08/18/Docker-on-Yarn/" rel="next" title="Docker on Yarn 总体设计">
+                <i class="fa fa-chevron-left"></i> Docker on Yarn 总体设计
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/18/Docker-on-Yarn/" rel="prev" title="Docker on Yarn 总体设计">
-                Docker on Yarn 总体设计 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -418,8 +414,8 @@ Container 的无缝切换
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/12/Docker-on-Yarn-Action1/"
-           data-title="Docker on Yarn 实战一" data-url="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/12/Docker-on-Yarn-Action1/">
+      <div class="ds-thread" data-thread-key="2016/08/19/Docker-on-Yarn-Action1/"
+           data-title="Docker on Yarn 实战一" data-url="https://github.com/piaoyu/piaoyu.github.io.git/2016/08/19/Docker-on-Yarn-Action1/">
       </div>
     
   </div>
@@ -510,7 +506,7 @@ Container 的无缝切换
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-on-Yarn-实战"><span class="nav-number">1.</span> <span class="nav-text">Docker on Yarn 实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-的无缝切换"><span class="nav-number">1.1.</span> <span class="nav-text">Container 的无缝切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的CPU隔离"><span class="nav-number">1.2.</span> <span class="nav-text">DockerContainer 的CPU隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的内存隔离"><span class="nav-number">1.3.</span> <span class="nav-text">DockerContainer 的内存隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的安全"><span class="nav-number">1.4.</span> <span class="nav-text">DockerContainer 的安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-方面的改造"><span class="nav-number">1.5.</span> <span class="nav-text">Docker 方面的改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-on-Yarn-实战"><span class="nav-number">1.</span> <span class="nav-text">Docker on Yarn 实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端Container-的无缝切换"><span class="nav-number">1.1.</span> <span class="nav-text">客户端Container 的无缝切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的CPU隔离"><span class="nav-number">1.2.</span> <span class="nav-text">DockerContainer 的CPU隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的内存隔离"><span class="nav-number">1.3.</span> <span class="nav-text">DockerContainer 的内存隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DockerContainer-的安全"><span class="nav-number">1.4.</span> <span class="nav-text">DockerContainer 的安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-方面的改造"><span class="nav-number">1.5.</span> <span class="nav-text">Docker 方面的改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -648,10 +644,6 @@ Container 的无缝切换
     })();
   </script>
 
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
