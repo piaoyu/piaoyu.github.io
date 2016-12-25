@@ -98,7 +98,7 @@
 
 客户端Container 的无缝切换
 由于我们之前还有很多任务跑在DefaultContainer和LinuxContainer上,所以需要实现客户端能通过参数控制我们任务运行的Contai">
-<meta property="og:updated_time" content="2016-08-19T07:48:27.000Z">
+<meta property="og:updated_time" content="2016-09-20T10:05:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker on Yarn 实战一">
 <meta name="twitter:description" content="Docker on Yarn 实战
@@ -338,7 +338,7 @@
 </blockquote>
 <h3 id="DockerContainer-的内存隔离"><a href="#DockerContainer-的内存隔离" class="headerlink" title="DockerContainer 的内存隔离"></a>DockerContainer 的内存隔离</h3><blockquote>
 <p>DockerContainer 内存隔离方面有两中不同的方案。<br>一种是继续使用之前ContainerMonitor 的内存隔离、另外一种是使用Cgroup的内存隔离机制。</p>
-<p>1) 社区里面讨论中有人认为Cgroup内存隔离是有问题的,Cgroup 强制内存限制策略不容许内存瞬间峰值。但也有人指出把memory.limit_in_bytes设置大一些和利用Cgroup中memory.soft_limit_in_bytes的内存回收策略是可以避免内存瞬间峰值的。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-1856" target="_blank" rel="external">Yarn-1856</a>,出于对当前众多任务的考虑我们选择了前者。</p>
+<p>1) 社区里面讨论中有人认为Cgroup内存隔离是有问题的,Cgroup 强制内存限制策略不容许内存瞬间峰值。但也有人指出把memory.limit_in_bytes设置大一些和利用Cgroup中memory.soft_limit_in_bytes的内存回收策略是可以避免内存瞬间峰值的。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-1856" target="_blank" rel="external">Yarn-1856</a>,出于对当前众多任务的考虑我们选择了前者。  </p>
 <p>2) ContainerMonitor 的内存隔离方案还出现DockerContainer获取不了Pid的Bug。<br>详情可参阅<a href="https://issues.apache.org/jira/browse/YARN-3080" target="_blank" rel="external">YARN-3080</a>,我们对这个Bug也进行了修复。</p>
 </blockquote>
 <h3 id="DockerContainer-的安全"><a href="#DockerContainer-的安全" class="headerlink" title="DockerContainer 的安全"></a>DockerContainer 的安全</h3><blockquote>
@@ -464,7 +464,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -472,7 +472,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -481,7 +481,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

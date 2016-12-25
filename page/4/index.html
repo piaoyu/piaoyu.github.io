@@ -245,8 +245,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/11/SparkR-Action/" itemprop="url">
-                  SparkR 初探
+                <a class="post-title-link" href="/2016/08/18/Docker-on-Yarn/" itemprop="url">
+                  Docker on Yarn 总体设计
                 </a>
               
             
@@ -259,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T21:42:00+08:00" content="2016-08-11">
-              2016-08-11
+            <time itemprop="dateCreated" datetime="2016-08-18T14:42:53+08:00" content="2016-08-18">
+              2016-08-18
             </time>
           </span>
 
@@ -273,8 +273,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
+                  <a href="/categories/Yarn/" itemprop="url" rel="index">
+                    <span itemprop="name">Yarn</span>
                   </a>
                 </span>
 
@@ -289,8 +289,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/11/SparkR-Action/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/SparkR-Action/" itemprop="commentsCount"></span>
+                <a href="/2016/08/18/Docker-on-Yarn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/Docker-on-Yarn/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,22 +315,27 @@
       
         
           
-            <h2 id="R-大数据支持引擎的对⽐"><a href="#R-大数据支持引擎的对⽐" class="headerlink" title="R 大数据支持引擎的对⽐"></a>R 大数据支持引擎的对⽐</h2><p>R 的并行能力和对大数据的支持能力一直备受诟病,虽然 R 可以高效的进行数据 处理和机器学习任务,但 R 的处理能力受限于内存的大小。<br>现在 R 和分布式计算引擎的结合方案有如下四种:<br>RHadoop、RHipe、R + HadoopStreaming、SparkR<br>我们通过了解他们各自的优缺点可以为我们的选择作出一定的参考。 </p>
-<ol>
-<li><p><strong>RHadoop 的优势:</strong> R 与 Hadoop 集成,为 R 处理大规模的数据提供了更好的 引擎。<br><strong>RHadoop 的劣势:</strong> 需要了解 mapreduce 的思想、RHadoop 主要跟 Hadoop1.X 的结合较好。RHadoop 对于 Hadoop2.X Yarn 框架的设置资料奇缺。而且 R 语 言中的函数都要自己重新实现一遍。R+Hadoop 还不够成熟,企业级应用依然缺 乏成功案例。</p>
+            <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p> 数据挖掘平台通常需要用到各种繁杂的科学计算包,但所依赖的环境却不太相同。我们需要在集群中提供不同基础环境来运行这些科学算法包。</p>
+<h2 id="方案调研"><a href="#方案调研" class="headerlink" title="方案调研"></a>方案调研</h2><ol>
+<li><p>我们可以在主机上安装不同版本的基础环境，然后用不同版本基础环境去处理各个科学计算包的依赖,但这样会导致主机上的环境混乱。例如多版本Python共存的问题就是典型的例子。</p>
 </li>
-<li><p><strong>RHipe 的优势:</strong> 也是 R 和 Hadoop 的集成,为 R 处理大规模的数据提供了更 好的引擎。<br><strong>RHipe 的劣势:</strong> 同 RHadoop 有类似的问题。</p>
+<li><p>我们可以通过实现DockerContainer运行在Yarn框架上来实现每个任务的不同环境的定制。</p>
 </li>
-<li><p><strong>R + HadoopStreaming 的优势:</strong> 通过用 R 脚本实现 Mapper 和 Reducer,通 过 HadoopStreaming 的方式调用 R 脚本实现的 Mapper 和 Reducer。个人认为这 种方式是 R + Hadoop 生产环境部署是最靠谱的一种。</p>
-</li>
-<li><p><strong>SparkR 的优势:</strong> 与大数据全栈引擎 Spark 集成、R 与 Spark 的结合会极大 提升 Spark 在机器学习方面的优势地位,极大的简化使用者的学习成本,让我们 只关注所需要解决的问题本身。<br><strong>SparkR 的劣势:</strong> Spark 和 R 的结合比较新,所以会存在稳定性和各种小问题。 但 Spark 社区活跃程度很高,在快速迭代的情况下各种小问题会很快解决。</p>
+<li><p>Yarn对环境依赖复杂和隔离性需求高的应用程序支持不足，Docker的技术优势是提供任何程序能够运行在资源隔离的容器环境。</p>
 </li>
 </ol>
-<p>通过对比各个R大数据支持引擎,最终我们选择了SparkR这个方案</p>
-<h2 id="SparkR-编译部署"><a href="#SparkR-编译部署" class="headerlink" title="SparkR 编译部署"></a>SparkR 编译部署</h2><p>CentOS 编译安装 R-3.2.2<br>1、下载<br>wget <a href="http://mirror.bjtu.edu.cn/cran/src/base/R-3/R-3.2.2.tar.gz" target="_blank" rel="external">http://mirror.bjtu.edu.cn/cran/src/base/R-3/R-3.2.2.tar.gz</a><br>2、解压:<br>tar -zxvf R-3.2.2.tar.gz cd R-3.2.2.tar.gz<br>3、安装<br>yum install readline-devel<br>yum install libXt-devel<br>./configure<br>如果使用 rJava 需要加上 –enable-R-shlib ./configure –enable-R-shlib –prefix=/usr/R-3.2.2 make<br>make install<br>4、配置环境变量<br>vim ~/.bashrc<br>增加 PATH=/usr/R-3.2.2/bin :$PATH R_HOME=/user/R-3.2.2<br>5、测试<br>Rscript $R_HOME/lib64/R/share/R/tests-startup.R<br><img src="/images/sparkr-action/testr.png" alt=""></p>
-<h2 id="CentOS-下安装部署-Rstudio"><a href="#CentOS-下安装部署-Rstudio" class="headerlink" title="CentOS 下安装部署 Rstudio"></a>CentOS 下安装部署 Rstudio</h2><p>1 、下载 Rstudio-Server<br>wget <a href="http://download2.rstudio.org/rstudio-server-rhel-0.99.483-x86_64.rpm" target="_blank" rel="external">http://download2.rstudio.org/rstudio-server-rhel-0.99.483-x86_64.rpm</a><br>2、安装 Rstudio-Server<br>rpm –ivh rstudio-server-rhel-0.99.483-x86_64.rpm<br>3、创建 Rstudio-Server 的用户和用户组<br>groupadd rstudio_users<br>useradd rstudio_user<br>usermod -a -G rstudio_users rstudio_user<br>chown -R rstudio_user:rstudio_users /home/rstudio_user<br>4、配置 Rstudio-Server<br>cat “auth-required-user-group=rstudio_users” &gt;&gt;/etc/rstudio/rserver.conf<br>5、测试登陆<br>通过浏览器,我们访问 RStudio Server: <a href="http://172.16.190.28:8787/auth-sign-in" target="_blank" rel="external">http://172.16.190.28:8787/auth-sign-in</a><br>用户名和密码为 Linux 用户的用户名和密码<br><img src="/images/sparkr-action/rstudio-server-login.png" alt=""></p>
-<h2 id="CentOS-安装部署-SparkR"><a href="#CentOS-安装部署-SparkR" class="headerlink" title="CentOS 安装部署 SparkR"></a>CentOS 安装部署 SparkR</h2><p>下载 Spark 软件<br>git clone <a href="https://github.com/apache/spark">https://github.com/apache/spark</a><br>编译 SparkR<br>cd spark<br>git checkout branch-1.6.0<br>build/mvn -Phadoop-2.2 -Dhadoop.version=2.2.0 -Pyarn -Phive -Phive-thriftserver -Pspark-ganglia-lgpl -Psparkr -DskipTests clean package<br>发布<br>/make-distribution.sh -Phadoop-2.2 -Dhadoop.version=2.2.0 -Pyarn -Phive -Phive-thriftserver -Pspark-ganglia-lgpl -Psparkr -DskipTests clean package<br>部署 SparkR<br>mv dist spark-1.6.0<br>拷贝整个 spark-1.6.0 目录到部署的 Rstudio-Server 的机器上<br>修改~/.bashrc 指向 spark-1.6.0 的目录<br>在~/.Rprofile 的文件中增加<br>Sys.setenv(SPARK_HOME=”/home/rstudio_user/spark-1.6.0”)<br>.libPaths(c(file.path(Sys.getenv(“SPARK_HOME”), “R”, “lib”), .libPaths()))<br>测试 SparkR<br><img src="/images/sparkr-action/sparkr-test.png" alt=""><br><img src="/images/sparkr-action/runsparkr.png" alt=""><br>Have Fun in SparkR.</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="http://tessera.io/docs-install-cluster/#installation" target="_blank" rel="external">Tessera Installation on Red Hat Enterprise Linux</a><br><a href="http://luoyulong.github.io/blog/2014/12/05/rstudio-server-dot-ld-library-path" target="_blank" rel="external">RStudio Server 环境变量LD_LIBRARY_PATH的配置问题</a><br><a href="https://databricks.com/blog/2015/06/09/announcing-sparkr-r-on-spark.html" target="_blank" rel="external">Announcing SparkR: R on Apache Spark</a><br><a href="http://spark.apache.org/docs/latest/building-spark.html" target="_blank" rel="external">Building Spark</a><br><a href="https://github.com/apache/spark/tree/master/R">R on Spark</a></p>
+<p>通过诸多的对比,Docker on Yarn 正是解决我们当前问题的最优的方案。</p>
+<h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><p>为了解决背景介绍问题,为此我们进行了Docker on Yarn 的总体设计。<br>我们先来看一下Docker on Yarn 的整体流程图<br><img src="/images/docker-on-yarn/docker-on-yarn-flow.png" alt=""></p>
+<p>整体的流程大概如下:</p>
+<ol>
+<li>在GitLab上存储各个集市的Dockerfile, 通过Merge事件触发Jenkins对Docker镜像的构建。</li>
+<li>在Jenkins 来构建完Docker镜像之后,把镜像推到镜像仓库。</li>
+<li>通过Jenkins把镜像save出来, 然后用Salt集群管理工具实现P2P的模式来大规模分发Docker镜像到集群节点供DockerContainer使用。</li>
+<li>在客户端提交任务时指定运行DockerContainer和Docker的镜像,运行自己的Application。</li>
+<li>提交的任务通过在NodeManager上用指定的Docker镜像初始化DockerContainer运行任务。 </li>
+</ol>
+<p>从整体的流程图中,我们可以看出Docker on Yarn 最关键的一步是实现DockerContianer的运行,<br>在下篇Docker on Yarn 的实践中,我们将讲述我们如何在基于Hadoop-2.7.1 源码实现DockerContainer。敬请期待</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://wiki.apache.org/hadoop/dineshs/IsolatingYarnAppsInDockerContainers" target="_blank" rel="external">Isolating YARN Applications in Docker Containers</a><br><a href="https://issues.apache.org/jira/browse/YARN-2466" target="_blank" rel="external">Yarn-2644</a><br><a href="https://issues.apache.org/jira/browse/YARN-3611" target="_blank" rel="external">Yarn-3611</a><br><a href="https://docs.docker.com/engine/understanding-docker/" target="_blank" rel="external">Docker</a><br><a href="https://blog.docker.com/" target="_blank" rel="external">Docker Blog</a></p>
 
           
         
@@ -363,7 +368,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -404,7 +409,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -412,7 +417,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -421,7 +426,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
